@@ -11,7 +11,7 @@ STOPS = [stop_on_line(".*passed!.*"),
 
 r = Runner(save("qemu.out"))
 
-@test(30, "loaduser")
+@test(20, "loaduser")
 def test_loaduser():
   s = """
   $ loaduser
@@ -80,6 +80,24 @@ def test_sleep():
   r.run_qemu(*STOPS, shell_script(script))
   r.match(*exps, isregs=isregs, continued=True)
 
+@test(10, "ping2")
+def test_ping2():
+  s = """
+  $ ping2
+  ping: pid=1, i=0, x=0
+  ping: pid=1, i=1, x=0
+  ping: pid=1, i=2, x=0
+  ping: pid=1, i=3, x=0
+  ping: pid=1, i=4, x=0
+  ping: pid=1, i=5, x=0
+  ping: pid=1, i=6, x=0
+  ping: pid=1, i=7, x=0
+  """
+  script, exps, isregs = parse_script(s)
+  r.run_qemu(*STOPS, shell_script(script))
+  r.match(*exps, isregs=isregs, continued=True)
+
+
 @test(20, "shtest")
 def test_shtest():
   s = """
@@ -90,6 +108,9 @@ def test_shtest():
   $ sleep 10
   $ noshuchfile
   sh: exec failed.
+  $ brktest
+  brktest: start
+  brktest: passed!
   $ echo OK
   OK
   """
