@@ -15,7 +15,7 @@ void load_kernel() {
   eph = ph + elf->e_phnum;
   for (; ph < eph; ph++) {
     if (ph->p_type == PT_LOAD) {
-      // TODO: Lab1-2, Load kernel and jump
+      // TODO: Week 1, Load kernel and jump
       TODO();
     }
   }

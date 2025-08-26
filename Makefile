@@ -5,7 +5,7 @@ default: all
 .PHONY: clean clean-all clean-fs all qemu qemu-gdb gdb print-gdbport grade submit pack
 
 # REMEMBER TO MAKE CLEAN AFTER CHANGE ME!
-STAGE  := week12
+STAGE  := week1
 STAGES := week1 week2 week3 week4 week5 week6 week7 week8 week9 week10 week11 week12
 
 ifeq ($(filter $(STAGES), $(STAGE)), ) # STAGE must be valid
@@ -90,7 +90,7 @@ $(BOOT_ELF): $(BOOT_SOBJS) $(BOOT_COBJS)
 $(BOOT_IMG): $(BOOT_ELF)
 	@echo CREATE "->" $@
 	@objcopy -O binary -j .text $(BOOT_ELF) $(BOOT_IMG).tmp
-	@utils/genboot.pl $(BOOT_IMG).tmp $(BOOT_IMG)
+	@perl utils/genboot.pl $(BOOT_IMG).tmp $(BOOT_IMG)
 
 # Lib
 
