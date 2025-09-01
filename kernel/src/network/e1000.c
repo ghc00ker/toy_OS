@@ -144,6 +144,6 @@ int e1000_transmit(const char *buf, unsigned int len){
 int e1000_receive(char *buf, unsigned int len) {
     // TODO: WEEK12-network, handle receiving net message
     TODO();
-    return length; // Return the length of the received data
+    // return length; // Return the length of the received data
 }
 

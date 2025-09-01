@@ -4,6 +4,7 @@
 // DO NOT DEFINE ANY NON-LOCAL VARIBLE!
 
 void load_kernel() {
+  // comment us in WEEK-1-os-start.
   char hello[] = {'\n', 'h', 'e', 'l', 'l', 'o', '\n', 0};
   putstr(hello);
   while (1) ;

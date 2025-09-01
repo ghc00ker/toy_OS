@@ -111,3 +111,12 @@ void vm_pgfault(size_t va, int errcode) {
   printf("pagefault @ 0x%p, errcode = %d\n", va, errcode);
   panic("pgfault");
 }
+
+// For WEEK12-network
+void *mmio_map_region(uint32_t pa, uint32_t size){ 
+  // WEEK12-network
+  // Reserve size bytes in the DEVSPACE region. 
+  // Return the base of the reserved region.  size does *not*
+  // have to be multiple of PGSIZE. 
+  return (void*)pa;
+}
