@@ -58,7 +58,7 @@ grade-oj:
 	grade/grade-$(STAGE)-oj
 
 submit:
-	python3 ok --config okconfig/$(STAGE).ok --submit
+	python3 ok --config okconfig/$(STAGE).ok --submit --insecure
 
 pack:
 	mkdir -p build/submit
