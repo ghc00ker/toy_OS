@@ -34,7 +34,6 @@ void producer(int id) {
     P(mutex); // producer enters monitor
     while(monitor_ptr->count == monitor_ptr->buffer_size){ // producer waiting condition
         cv_wait(cv, mutex);
-        P(mutex);
     }
     // put to buffer
     printf("producer %d: produce\n", id);
