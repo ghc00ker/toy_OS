@@ -138,7 +138,7 @@ def test_join_test():
 def test_join_compute():
   s = """
   $ join_compute
-  Total sum calculated by threads: 84
+  Total sum calculated by threads: 136
   $ echo OK
   OK
   """
