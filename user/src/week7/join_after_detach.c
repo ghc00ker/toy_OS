@@ -9,7 +9,7 @@ int thread_function(void* arg) {
 int main() {    
     // 创建线程
     void *stack = malloc(4096);
-    int tid = clone(thread_function, stack, NULL);
+    int tid = clone(thread_function, stack+4096, NULL);
     if(tid == -1){
         printf("clone failed.\n");
         free(stack);

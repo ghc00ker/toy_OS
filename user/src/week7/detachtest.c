@@ -21,7 +21,7 @@ void test_return_exit() {
     }
 
     // 创建一个新线程
-    int tid = clone(thread_function, stack, NULL);
+    int tid = clone(thread_function, stack+4096, NULL);
     if (tid == -1) {
         printf("clone failed.\n");
         free(stack);  // 在失败时释放栈

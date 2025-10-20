@@ -10,7 +10,7 @@ int thread_function(void* arg) {
 int main() {    
     // Create a new thread
     void *stack = malloc(4096);
-    int tid = clone(thread_function, stack, NULL);
+    int tid = clone(thread_function, stack+4096, NULL);
     
 
     if (tid == -1) {

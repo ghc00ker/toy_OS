@@ -17,7 +17,7 @@ int main(){
     };
 
     void *stack = malloc(4096);
-    clone(thread_func, stack, (void *)argv);
+    clone(thread_func, stack+4096, (void *)argv);
 
     thread_exit(0);
 }

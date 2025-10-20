@@ -36,7 +36,7 @@ int main() {
     if (pid1 == 0) {
         // 子进程1中测试线程调用 exec
         void *stack = malloc(4096);
-        if (clone(thread_exec_test, stack, NULL) == -1) {
+        if (clone(thread_exec_test, stack+4096, NULL) == -1) {
             printf("clone failed in thread_exec_test.\n");
             free(stack);
             exit(1);

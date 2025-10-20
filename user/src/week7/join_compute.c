@@ -33,7 +33,7 @@ int main() {
     for (int i = 0; i < NUM_THREADS; i++) {
         // Each thread gets a different part of the array to compute
         stacks[i] = malloc(4096);
-        threads[i] = clone(compute_partial_sum, stacks[i], (void*)(array + i * (ARRAY_SIZE / NUM_THREADS)));
+        threads[i] = clone(compute_partial_sum, stacks[i]+4096, (void*)(array + i * (ARRAY_SIZE / NUM_THREADS)));
         if (threads[i] == -1) {
             printf("pthread_create failed.\n");
             free(stacks[i]);  // 在失败时释放栈
