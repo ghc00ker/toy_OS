@@ -14,6 +14,11 @@ _start:
 
   # TODO: WEEK1-os-start, set the lowest bit of cr0
 
+  # 开启保护模式
+  movl %cr0, %eax # 读取
+  orl  $1, %eax    # 将最低位（PE 位）置 1
+  movl %eax, %cr0 # 写回
+
   ljmp $0x08, $start32 # reload code segment selector and ljmp to start32
 
 .code32
@@ -41,8 +46,12 @@ gdt: # 8 bytes for each table entry, at least 1 entry
   .byte 0, 0, 0, 0
 
   # TODO: WEEK1-os-start, code segment entry
-
+  .word 0xFFFF, 0
+  .byte 0, 0x9a, 0xcF, 00
   # TODO: WEEK1-os-start, data segment entry
+  .word 0xFFFF, 0
+  .byte 0, 0x92, 0xcF, 00
+
 
 gdt_desc: # 6 bytes in total
   .word (gdt_desc - gdt - 1) # sizeof(gdt) - 1

@@ -7,6 +7,7 @@
 #include <elf.h>
 
 uint32_t load_elf(PD *pgdir, const char *name) {
+  Log("Load user elf: \"%s\" to memory\n", name);
   Elf32_Ehdr elf;
   Elf32_Phdr ph;
   inode_t *inode = iopen(name, TYPE_NONE);
@@ -18,13 +19,12 @@ uint32_t load_elf(PD *pgdir, const char *name) {
   }
 
   // WEEK3-virtual-memory: Restore cr3 for convenient loading
-
   for (int i = 0; i < elf.e_phnum; ++i) {
     iread(inode, elf.e_phoff + i * sizeof(ph), &ph, sizeof(ph));
     if (ph.p_type == PT_LOAD) {
       // WEEK1: Load segment to physical memory
       // TODO();
-
+      iread(inode, ph.p_offset, (void *)ph.p_vaddr, ph.p_filesz);
       // WEEK3-virtual-memory: Load segment to virtual memory
       // TODO();
     }
